@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'apitry';
+
+  constructor(private http: HttpClient, private modalService: NgbModal){}
+
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
+
 }

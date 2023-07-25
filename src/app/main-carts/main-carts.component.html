@@ -1,0 +1,36 @@
+<!-- <div>
+    <carts *ngFor="let category of meals" class="carts">
+        
+    </carts>
+</div> -->
+
+<!-- <div>
+    <div *ngFor="let category of meals" class="carts">
+        deneme
+    </div>
+</div> -->
+
+<!-- <app-left-menu (categorySelected)="onCategorySelected($event)"></app-left-menu> -->
+
+
+<ul>
+    <li *ngFor="let meals of meals" class="carts">
+        <a href="#">
+            <div class="box">
+                <img src="#" alt="img">
+                <div class="content">
+                    <div class="top">
+                        <div class="name">
+                            {{meals.strMeal}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text">
+                <span>
+                    {{ meals.strInstructions }}
+                </span>
+            </div>
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,27 @@
+.containerr{
+    background-color: #404040;
+    color: #F6FBEF;
+    border-radius: 3px;
+    max-width: 25%;
+    min-width: 15%;
+    min-height: 23rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerr .head{
+    background-color: #F6FBEF;
+    color: #404040;
+    margin: 5%;
+    padding: 20% 20% 20% 60%;
+}
+
+.containerr .head header{
+    position:relative;
+}
+
+.containerr .bottom{
+    margin-left: 5%;
+    max-width: fit-content;
+    max-height: fit-content;
+}

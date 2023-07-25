@@ -1,0 +1,25 @@
+/* html{
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+app-header{
+    z-index: 1000;
+}
+
+
+.pageitself{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -1.0rem;
+}
+*/
+
+*{
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s ease-out;
+}

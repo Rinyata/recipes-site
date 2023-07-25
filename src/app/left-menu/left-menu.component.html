@@ -1,0 +1,29 @@
+<div class="container">
+  
+  <!-- <mat-form-field  class="mt-5 float-left">
+      <mat-label>Kategoriler</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let category of meals" [value]="category">
+          {{ category.strCategory }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <li class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Kategoriler
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li *ngFor="let category of meals" [value]="category">
+          <a (click)="onCategorySelect(category.strCategory)">
+            {{ category.strCategory }}
+          </a>
+          <hr class="dropdown-divider">
+        </li>
+      </ul>
+    </li>
+
+
+</div>
+  
+
