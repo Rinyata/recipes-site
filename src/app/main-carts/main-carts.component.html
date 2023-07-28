@@ -1,23 +1,8 @@
-<!-- <div>
-    <carts *ngFor="let category of meals" class="carts">
-        
-    </carts>
-</div> -->
-
-<!-- <div>
-    <div *ngFor="let category of meals" class="carts">
-        deneme
-    </div>
-</div> -->
-
-<!-- <app-left-menu (categorySelected)="onCategorySelected($event)"></app-left-menu> -->
-
-
 <ul>
-    <li *ngFor="let meals of meals" class="carts">
-        <a href="#">
+    <li *ngFor="let meals of mealsByCategories" class="carts">
+        <a href="/food/{{meals.idMeal}}" >
             <div class="box">
-                <img src="#" alt="img">
+                <img [src]="meals.strMealThumb" alt="img">
                 <div class="content">
                     <div class="top">
                         <div class="name">
@@ -27,8 +12,8 @@
                 </div>
             </div>
             <div class="text">
-                <span>
-                    {{ meals.strInstructions }}
+                <span >
+                    {{ getInstructionsByMealId(meals.idMeal) }}
                 </span>
             </div>
         </a>

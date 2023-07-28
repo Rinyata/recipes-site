@@ -1,0 +1,79 @@
+<div class="container">
+    <img [src]="meal.meals[0].strMealThumb" alt="img">
+    <div class="info-box">
+        <h1 class="food-name">
+            {{meal.meals[0].strMeal}}
+        </h1>
+        <div class="top">
+            <div class="top-top">
+                <p>
+                    <span>
+                        Category: 
+                    </span>
+                    {{meal.meals[0].strCategory}}
+                </p>
+                <p>
+                    <span>
+                        Tags: 
+                    </span>
+                    <span *ngIf="meal.meals[0].strTags" class="none">
+                        {{meal.meals[0].strTags}}
+                    </span>
+                    <span class="none" *ngIf="!meal.meals[0].strTags">
+                        None
+                    </span>
+                </p>
+            </div>
+            <div class="top-bottom">
+                <p>
+                    <span>
+                        Area: 
+                    </span>
+                    {{meal.meals[0].strArea}}
+                </p>
+                <p>
+                    <span>
+                        Drink Alternative:  
+                    </span>
+                    <span *ngIf="meal.meals[0].strDrinkAlternate">
+                        {{meal.meals[0].strDrinkAlternate}}
+                    </span>
+                    <span class="none" *ngIf="!meal.meals[0].strDrinkAlternate">
+                        None
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>
+                <span>
+                    Youtube: 
+                </span>
+                {{meal.meals[0].strYoutube}}
+            </p>
+            <div>
+                <span>
+                    <span>
+                        Ingrediants: 
+                    </span>
+                    <span class="ingrediants" *ngFor="let i of counter(20)">
+                        <span *ngIf="meal.meals[0]['strIngredient' + (i + 1)]" >
+                            {{ meal.meals[0]['strIngredient' + (i + 1)] }}
+                            X
+                            {{ meal.meals[0]['strMeasure' + (i + 1)] }}
+                            <span *ngIf="meal.meals[0]['strIngredient' + (i + 2)]">
+                                ,
+                            </span>
+                        </span>
+                    </span>
+                </span>
+            </div>
+            <p>
+                <span>
+                    Instructions:  
+                </span>
+                {{meal.meals[0].strInstructions}}
+            </p>
+        </div>
+    </div>
+</div>

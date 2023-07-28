@@ -27,32 +27,43 @@ ul {
 
    .carts .box{
     margin: 0rem 1.7rem 0 1.7rem;
-    height: 13rem;
+    /* height: 13rem; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
+    align-items: flex-start;
     background-color: #d5d5d5;
-    border-radius: 1px;
+    position: relative;
+   }
+
+   .carts .box img{
+    object-fit: contain;
+    width: 100%;
+    height: 10rem;
+    border-radius: 5px;
+    background-color: aliceblue;
+    object-fit: cover;
+
    }
 
    .carts .box .content{
-        color: #404040;
+        color: #d5d5d5;
+        z-index: 5; 
         text-transform: uppercase;
         font-style: bold;
         font-weight: 700;
-        font-size: 200%;
-        position: relative;
-        align-self: flex-start;
+        font-size: 180%;
+        position: absolute; /* Resmin üzerine pozisyonlamak için absolute yapın */
+        top: 10rem; /* Yemek ismini resmin üstüne konumlandırmak için top değerini ayarlayın */
+        left: 0; /* Yemek ismini sola yaslamak için left değerini ayarlayın */;
         padding: 10px;
-        text-shadow: -3px 5px #40404029, 0 0 5px rgba(66, 66, 66, 0.1);
+        text-shadow: -3px 5px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
    }
 
    .carts .text{
-    color: #d5d5d5;
+    color: #d5d5d5; 
     position: relative;
     margin-left: 1.7rem ;
-    
-
+    z-index: 7; 
+    text-shadow: -3px 5px #40404029, 0 0 5px rgba(66, 66, 66, 0.1);
+    bottom: -140px;
    }

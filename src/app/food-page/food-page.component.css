@@ -1,0 +1,71 @@
+.container{
+    display: flex;
+    justify-content: flex-start;
+    
+    flex-wrap: wrap;
+    margin: 3rem;
+    background-color: #404040;
+    min-width: 95%;
+    border-radius: 3px;
+    color: aliceblue;
+}
+
+.container > *{
+    min-width: fit-content;
+    max-width: 40rem;
+}
+
+img{
+    border-radius: 5px;
+    flex:1 0;
+    background-color: aliceblue;
+    object-fit: cover;
+    height: 35rem;
+    margin: 5rem;
+}
+
+.container .info-box{
+    max-width: 40%;
+    font-size: 150%;
+    margin: 4rem;
+    min-height: 45rem;
+}
+
+.container .info-box .food-name{
+    font-size: 250%;
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.container .info-box .top{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container .info-box .top-bottom{
+    margin-left: 7rem;
+}
+
+.container .info-box .none{
+    color: aliceblue;
+}
+
+.container .info-box .ingrediants > *{
+    color: rgb(149, 203, 250);
+}
+
+.container .info-box span{
+    color: #cb8e8e;
+}
+
+.container .info-box .bottom{
+    margin-top: 2rem;
+    max-width: 60rem;
+    font-size: 80%;
+}
+
+.container .info-box .bottom > *{
+    margin-top: 1.5rem;
+
+}
