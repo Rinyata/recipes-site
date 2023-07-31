@@ -18,6 +18,8 @@ export class MealService {
       return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
     else if(param == "categories")
       return this.http.get<any[]>(this.apiUrl + 'categories.php');
+    else if(param == "area")
+      return this.http.get<any[]>(this.apiUrl + 'list.php?a=list');
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 

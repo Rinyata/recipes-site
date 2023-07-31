@@ -37,10 +37,8 @@ export class MainCartsComponent {
   }
 
   getMealsBy() {
-    this.selectedCategory = this.dataSharingService.getSelectedCategory();
 
     if (!this.selectedCategory) {
-      console.log('Kategori değeri yok veya boş.');
       this.selectedCategory = "SeaFood";
     }
 

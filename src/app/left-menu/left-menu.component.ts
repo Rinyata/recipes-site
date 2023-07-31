@@ -15,6 +15,7 @@ import { ActivatedRoute,Router } from '@angular/router'; //activatedrouter readi
 export class LeftMenuComponent {
   
   meals: any[] | undefined;
+  areas: any[] | undefined;
 
   constructor(private mealService: MealService, private dataSharingService: DataSharingService, private route:ActivatedRoute, private router:Router) { }
   //constructor parantezine kullanacağımız servisleri ekliyoruz ve buna enjekte etmek deniyor. 
@@ -22,6 +23,7 @@ export class LeftMenuComponent {
 
   ngOnInit() {
     this.getMeals();
+    this.getAreas();
   }
 
   getMeals() {
@@ -35,10 +37,26 @@ export class LeftMenuComponent {
       }
     );
   }
+  getAreas() {
+    this.mealService.getMeals("area").subscribe(
+      (data: any) => {
+        this.areas = data.meals;
+        console.log(data);
+      },
+      (error: any) => {
+        console.error('Error fetching meals:', error);
+      }
+    );
+  }
 
   onCategorySelect(category: string){
     console.log('Seçilen kategori: ', category); // Kategori seçimi kontrolü için bu satırı ekleyin
     this.dataSharingService.setSelectedCategory(category);
+  }
+
+  onAreaSelect(area: string){
+    console.log('Seçilen alan: ', area);// Alanı seçimi kontrol
+    this.dataSharingService.setSelectedArea(area);
   }
 
 }

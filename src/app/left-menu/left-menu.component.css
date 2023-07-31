@@ -4,27 +4,21 @@
     border-radius: 3px;
     min-width: 180px;
     display: flex;
-    justify-content: center;
-
+    flex-direction: column;
 }
 
 .nav-item{
     position: absolute;
     margin-top: 80px;
+    padding: 0.5% 4% 0.5% 4%;
+    margin-left: 1rem;
     text-decoration: none;
     list-style: none;
-    max-width: 60%;
-    padding: 0.5% 4% 0.5% 4%;
     background-color: #fff;
     border-radius: 0rem 1rem 0rem 1rem;
-
 }
 
-/* mat-form-field{
-    position: relative;
-    justify-self: center;
-    margin: 30%;
-    
-    background-color: #fff;
-    border-radius: 0rem 1rem 0rem 1rem;
-} */
+
+.countries{
+    margin-top: 10rem;
+}

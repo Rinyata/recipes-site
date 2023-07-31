@@ -7,8 +7,11 @@ import { Subject } from 'rxjs';
 export class DataSharingService {
 
   private selectedCategory: string = '';
+  private selectedArea: string = '';
   private categoryChangedSource = new Subject<string>();
+  private areaChangedSource = new Subject<string>();
 
+  areaChanged$ = this.areaChangedSource.asObservable();
   categoryChanged$ = this.categoryChangedSource.asObservable();
   //categoryChanged$ burada biz gözlemci objedir.
 
@@ -17,8 +20,17 @@ export class DataSharingService {
     this.categoryChangedSource.next(category); // Kategori değiştiğinde dinleyicilere haber vermek için
   }
 
+  setSelectedArea(area:string){
+    this.selectedArea= area;
+    this.areaChangedSource.next(area); // Area değiştiğinde dinleyicilere haber vermek için
+  }
+
   getSelectedCategory(){
     return this.selectedCategory;
+  }
+
+  getSelectedArea(){
+    return this.selectedArea;
   }
 
 }
