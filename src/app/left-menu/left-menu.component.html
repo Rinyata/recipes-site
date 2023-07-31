@@ -1,28 +1,36 @@
 <div class="container">
-  
-  <!-- <mat-form-field  class="mt-5 float-left">
-      <mat-label>Kategoriler</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let category of meals" [value]="category">
-          {{ category.strCategory }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->
 
-    <li class="nav-item dropdown ">
-      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Kategoriler
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li *ngFor="let category of meals" [value]="category">
-          <a (click)="onCategorySelect(category.strCategory)">
-            {{ category.strCategory }}
-          </a>
-          <hr class="dropdown-divider">
-        </li>
-      </ul>
-    </li>
+    <div class="Kategoriler">
+      <li class="nav-item dropdown kategori">
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Kategoriler
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li *ngFor="let category of meals" [value]="category">
+            <a (click)="onCategorySelect(category.strCategory)">
+              {{ category.strCategory }}
+            </a>
+            <hr class="dropdown-divider">
+          </li>
+        </ul>
+      </li>
+    </div>
 
+    <div class="countries">
+      <li class="nav-item dropdown 2">
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ülkeler&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li *ngFor="let area of areas" [value]="area">
+            <a (click)="onAreaSelect(area.strArea)">
+              {{ area.strArea }}
+            </a>
+            <hr class="dropdown-divider">
+          </li>
+        </ul>   
+      </li>
+    </div>
 
 </div>
   
