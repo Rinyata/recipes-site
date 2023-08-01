@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let meals of mealsByCategories" class="carts">
+    <li *ngFor="let meals of mealByIds" class="carts">
         <a href="/food/{{meals.idMeal}}" >
             <div class="box">
                 <img [src]="meals.strMealThumb" alt="img">
@@ -13,7 +13,7 @@
             </div>
             <div class="text">
                 <span >
-                    {{ getInstructionsByMealId(meals.idMeal) }}
+                    {{meals.idMeal}}
                 </span>
             </div>
         </a>

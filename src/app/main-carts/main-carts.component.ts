@@ -12,81 +12,88 @@ import { Subscription, concatMap, forkJoin, of, take } from 'rxjs'; // Buradaki 
   styleUrls: ['./main-carts.component.css']
 })
 export class MainCartsComponent {
-  mealsByCategories: any;
-  mealsByIDs: any[] = [];
-  selectedCategory: string = 'Seafood';
-  ids: string[] = [];
-  private categorySubscription: Subscription = new Subscription(); // Başlangıç değeri verme
 
+  idsByCategories: string[] = [];
+  idsByAreas: string[] = [];
+
+  mealByIds: any[] = [];
+
+  SelectedCategory = "Seafood";
+  SelectedArea ="";
+
+  meals:any;
+
+  private categorySubscription: Subscription = new Subscription(); // Başlangıç değeri verelim
+  private areaSubscription: Subscription = new Subscription();
 
   constructor(private modalService: NgbModal, private mealService: MealService, private dataSharingService: DataSharingService){}
 
-  public open(modal: any): void {
-    this.modalService.open(modal);
-  }
-
-  ngOnInit() {
-    this.categorySubscription = this.dataSharingService.categoryChanged$.subscribe((category: string) => {
-      this.selectedCategory = category;
-      if (this.selectedCategory) {
-        this.getMealsBy();
+  ngOnInit(){
+    this.categorySubscription = this.dataSharingService.categoryChanged$.subscribe((category : string) => {
+      this.SelectedCategory = category;
+      if (this.SelectedCategory){
+        this.getIds();
       }
     });
-    // İlk kez yemekleri getirmek için getMealsBy fonksiyonunu çağırın
-    this.getMealsBy();
-  }
 
-  getMealsBy() {
-
-    if (!this.selectedCategory) {
-      this.selectedCategory = "SeaFood";
-    }
-
-    this.mealService.getMealsBy("foodsByCategories", this.selectedCategory).subscribe(
-      (data: any) => {
-        this.mealsByCategories = data.meals;
-
-        this.mealsByCategories.forEach((meal: { idMeal: string; }) => {
-          const id = meal.idMeal;
-          this.mealService.getMealsByID(id).pipe(
-            concatMap((mealData: any) => {
-              return of(mealData);
-            })
-          ).subscribe(
-            (mealData: any) => {
-              this.mealsByIDs.push(mealData);
-            },
-            (error: any) => {
-              console.error('Error fetching meals by ID:', error);
-            }
-          );
-        });
-
-        this.mealsByCategories.forEach((meal: { idMeal: string; }) => {
-          this.ids.push(meal.idMeal);
-        });
-      },
-      (error: any) => {
-        console.error('Error fetching meals:', error);
+    this.areaSubscription = this.dataSharingService.areaChanged$.subscribe((area : string) => {
+      this.SelectedArea = area;
+      if(this.SelectedArea){
+        this.getIds();
       }
-    );
-
+    })
   }
 
-  getInstructionsByMealId(id: string): string {
-    let meal;
-    for (let i = 0; i < this.mealsByIDs.length; i++) {
-      if(id == this.mealsByIDs[i]['meals'][0].idMeal){
-        meal = this.mealsByIDs[i]['meals'][0].strTags
-        //flundar was here
+  getIds(){
+    //kategorileriçin:
+    this.mealService.getMealsBy("foodsByCategories", this.SelectedCategory).subscribe(
+      
+      (data:any) => {
+        console.log(data);
+        this.meals=data.meals;
+        if(this.SelectedCategory!=null){
+        this.meals.forEach((meal: {idMeal: string}) => {
+          this.idsByCategories.push(meal.idMeal);
+          console.log("kategoriden id çektik koyduk.");
+        })
+        this.getMealByIDs(this.idsByCategories);
       }
+      }
+    )
+    //areaiçin:
+    this.mealService.getMealsBy("foodByAreas", this.SelectedArea).subscribe(
+      (data:any) => {
+        let meals;
+        this.meals=data.meals;
+        if(this.SelectedArea!=null){
+          this.meals.forEach((meal: {idMeal: string}) => {
+            console.log("areadan id çektik koyduk.");
+            this.idsByAreas.push(meal.idMeal);
+          })
+          this.getMealByIDs(this.idsByAreas);
+        }
+      }
+    )
+  }
+  
+  getMealByIDs(ids: any[]){
+    console.log("getMealByIds: ");
+    for (let i=0 ; i<ids.length ; i++){
+
+      this.mealService.getMealsByID(ids[i]).subscribe(
+        (data:any) => {
+          console.log("data.meals sırayla:")
+          console.log(data.meals[0]);
+          //flundar was here
+          this.mealByIds[i] = data.meals[0];
+        },
+        (error : any) =>{
+          console.log("error",error);
+        }
+      )
+
+      // this.mealByIds[i]["meals"][0].id    
     }
-    return meal  ? meal : 'none';
   }
-
-  ngOnDestroy() {
-    this.categorySubscription.unsubscribe();
-  }
-
 
 }

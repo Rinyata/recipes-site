@@ -26,12 +26,12 @@ export class MealService {
   getMealsBy(param:string, index:string) {
     if(param == "foodsByCategories")
       return this.http.get<any[]>(this.apiUrl + 'filter.php?c=' + index);
+    else if(param == "foodByAreas")
+      return this.http.get<any[]>(this.apiUrl + 'filter.php?a=' + index);
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 
   getMealsByID(id:string) {
-    //console.log("getmealsbyidgirdik");
-    //console.log( this.http.get<any[]>(this.apiUrl + 'lookup.php?i=' + id));
     return this.http.get<any[]>(this.apiUrl + 'lookup.php?i=' + id);
   }
 
