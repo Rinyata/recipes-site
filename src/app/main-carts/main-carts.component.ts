@@ -1,99 +1,108 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'; //for bootstrap
 import { MealService } from '../services/meal.service';
-import { LeftMenuComponent } from '../left-menu/left-menu.component';
 import { DataSharingService } from '../services/data-sharing.service';
-import { Subscription, concatMap, forkJoin, of, take } from 'rxjs'; // Buradaki satırı ekleyin
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-carts',
   templateUrl: './main-carts.component.html',
   styleUrls: ['./main-carts.component.css']
 })
-export class MainCartsComponent {
-
+export class MainCartsComponent implements OnDestroy {
   idsByCategories: string[] = [];
   idsByAreas: string[] = [];
-
   mealByIds: any[] = [];
-
   SelectedCategory = "Seafood";
-  SelectedArea ="";
+  SelectedArea = "";
+  meals: any;
 
-  meals:any;
-
-  private categorySubscription: Subscription = new Subscription(); // Başlangıç değeri verelim
+  private categorySubscription: Subscription = new Subscription();
   private areaSubscription: Subscription = new Subscription();
 
-  constructor(private modalService: NgbModal, private mealService: MealService, private dataSharingService: DataSharingService){}
+  constructor(
+    private modalService: NgbModal,
+    private mealService: MealService,
+    private dataSharingService: DataSharingService
+  ) {}
 
-  ngOnInit(){
-    this.categorySubscription = this.dataSharingService.categoryChanged$.subscribe((category : string) => {
+  ngOnInit() {
+    this.categorySubscription = this.dataSharingService.categoryChanged$.subscribe((category: string) => {
       this.SelectedCategory = category;
-      if (this.SelectedCategory){
+      if (this.SelectedCategory) {
         this.getIds();
       }
     });
 
-    this.areaSubscription = this.dataSharingService.areaChanged$.subscribe((area : string) => {
+    this.areaSubscription = this.dataSharingService.areaChanged$.subscribe((area: string) => {
       this.SelectedArea = area;
-      if(this.SelectedArea){
+      if (this.SelectedArea) {
         this.getIds();
       }
-    })
+    });
+    
   }
 
-  getIds(){
-    //kategorileriçin:
-    this.mealService.getMealsBy("foodsByCategories", this.SelectedCategory).subscribe(
-      
-      (data:any) => {
-        console.log(data);
-        this.meals=data.meals;
-        if(this.SelectedCategory!=null){
-        this.meals.forEach((meal: {idMeal: string}) => {
-          this.idsByCategories.push(meal.idMeal);
+  getIds() {
+    console.log("getIds çalıştı");
+
+    // Kategoriler için:
+    if (this.SelectedCategory !== "") {
+      this.mealService.getMealsBy("foodsByCategories", this.SelectedCategory).subscribe(
+        (data: any) => {
+          this.meals = data.meals;
+          this.idsByCategories = this.meals.map((meal: { idMeal: string }) => meal.idMeal);
           console.log("kategoriden id çektik koyduk.");
-        })
-        this.getMealByIDs(this.idsByCategories);
-      }
-      }
-    )
-    //areaiçin:
-    this.mealService.getMealsBy("foodByAreas", this.SelectedArea).subscribe(
-      (data:any) => {
-        let meals;
-        this.meals=data.meals;
-        if(this.SelectedArea!=null){
-          this.meals.forEach((meal: {idMeal: string}) => {
-            console.log("areadan id çektik koyduk.");
-            this.idsByAreas.push(meal.idMeal);
-          })
-          this.getMealByIDs(this.idsByAreas);
-        }
-      }
-    )
-  }
-  
-  getMealByIDs(ids: any[]){
-    console.log("getMealByIds: ");
-    for (let i=0 ; i<ids.length ; i++){
-
-      this.mealService.getMealsByID(ids[i]).subscribe(
-        (data:any) => {
-          console.log("data.meals sırayla:")
-          console.log(data.meals[0]);
-          //flundar was here
-          this.mealByIds[i] = data.meals[0];
+          this.getMealByIDs(this.idsByCategories);
         },
-        (error : any) =>{
-          console.log("error",error);
+        (error: any) => {
+          console.log("error", error);
         }
-      )
+      );
+    } else {
+      this.idsByCategories = [];
+      this.getMealByIDs(this.idsByCategories);
+    }
 
-      // this.mealByIds[i]["meals"][0].id    
+    // Alanlar için:
+    if (this.SelectedArea !== "") {
+      this.mealService.getMealsBy("foodByAreas", this.SelectedArea).subscribe(
+        (data: any) => {
+          this.meals = data.meals;
+          this.idsByAreas = this.meals.map((meal: { idMeal: string }) => meal.idMeal);
+          console.log("areadan id çektik koyduk.");
+          this.getMealByIDs(this.idsByAreas);
+        },
+        (error: any) => {
+          console.log("error", error);
+        }
+      );
+    } else {
+      this.idsByAreas = [];
+      this.getMealByIDs(this.idsByAreas);
     }
   }
 
+  getMealByIDs(ids: any[]) {
+    console.log("getMealByIds: ");
+    this.mealByIds = [];
+
+    for (let i = 0; i < ids.length; i++) {
+      this.mealService.getMealsByID(ids[i]).subscribe(
+        (data: any) => {
+          //flundar was here
+          this.mealByIds[i] = data.meals[0];
+        },
+        (error: any) => {
+          console.log("error", error);
+        }
+      );
+    }
+  }
+
+  ngOnDestroy() {
+    // Abonelikleri unsubscribe etmek için ngOnDestroy yöntemini kullanın
+    this.categorySubscription.unsubscribe();
+    this.areaSubscription.unsubscribe();
+  }
 }
