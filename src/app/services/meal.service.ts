@@ -23,6 +23,14 @@ export class MealService {
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 
+  // getMealsBy(param:string, index:string) {
+  //   if(param == "foodsByCategories")
+  //     return this.http.get<any[]>(this.apiUrl + 'filter.php?c=' + index);
+  //   else if(param == "foodByAreas")
+  //     return this.http.get<any[]>(this.apiUrl + 'filter.php?a=' + index);
+  //   else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
+  // }
+
   getMealsBy(param:string, index:string) {
     if(param == "foodsByCategories")
       return this.http.get<any[]>(this.apiUrl + 'filter.php?c=' + index);
@@ -30,6 +38,7 @@ export class MealService {
       return this.http.get<any[]>(this.apiUrl + 'filter.php?a=' + index);
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
+
 
   getMealsByID(id:string) {
     return this.http.get<any[]>(this.apiUrl + 'lookup.php?i=' + id);
