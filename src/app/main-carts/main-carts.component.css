@@ -1,69 +1,99 @@
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    z-index: 2;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    color: black;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+  list-style-type: none;
+  z-index: 2;
+}
 
-  .carts{
-    background-color: #404040;
-    height: 23rem;
-    border-radius: 3px;
-    max-width: 25%;
-    min-width: 29%;
-    margin: 2% 2% 2% 2%;
-   }
+li {
+  float: left;
+  list-style: none;
+  margin: 1rem;
+}
 
-   .carts .box{
-    margin: 0rem 1.7rem 0 1.7rem;
-    /* height: 13rem; */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #d5d5d5;
-    position: relative;
-   }
+li a {
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-   .carts .box img{
-    object-fit: contain;
-    width: 100%;
-    height: 10rem;
-    border-radius: 5px;
-    background-color: aliceblue;
-    object-fit: cover;
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 500px;
+  height: 20rem;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
-   }
+  border-radius: 3px;
+  min-width: 29%;
+}
 
-   .carts .box .content{
-        color: #d5d5d5;
-        z-index: 5; 
-        text-transform: uppercase;
-        font-style: bold;
-        font-weight: 700;
-        font-size: 180%;
-        position: absolute; /* Resmin üzerine pozisyonlamak için absolute yapın */
-        top: 10rem; /* Yemek ismini resmin üstüne konumlandırmak için top değerini ayarlayın */
-        left: 0; /* Yemek ismini sola yaslamak için left değerini ayarlayın */;
-        padding: 10px;
-        text-shadow: -3px 5px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
-   }
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
 
-   .carts .text{
-    color: #d5d5d5; 
-    position: relative;
-    margin-left: 1.7rem ;
-    z-index: 7; 
-    text-shadow: -3px 5px #40404029, 0 0 5px rgba(66, 66, 66, 0.1);
-    bottom: -140px;
-   }
+img{
+  object-fit: contain;
+  width: 100%;
+  height: 20rem;
+  border-radius: 5px;
+  background-color: #404040;
+  object-fit: cover;
+}
+
+.name{
+  color: #ffffff;
+  z-index: 5; 
+  font-style: bold;
+  font-weight: 700;
+  font-size: 170%;
+  position: absolute;
+  top: 15rem; 
+  left: 0; 
+  padding: 10px;
+  text-shadow: -3px 4px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
+}
+
+.back-name{
+  color: #d5d5d5;
+  z-index: 5; 
+  font-style: bold;
+  font-weight: 600;
+  font-size: 180%;
+  position: absolute;
+  top: .5rem; 
+  left: 0; 
+  padding: 10px;
+  text-shadow: -3px 5px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #404040;
+  color: white;
+  transform: rotateY(180deg);
+}

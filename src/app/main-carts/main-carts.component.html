@@ -1,24 +1,24 @@
-<ul>
-    <li *ngFor="let meals of mealByIds" class="carts">
-        <div *ngIf="!!meals && meals.idMeal">
-            <a href="/food/{{meals.idMeal}}" >
-                <div class="box">
-                    <img [src]="meals.strMealThumb" alt="img">
-                    <div class="content">
-                        <div class="top">
-                            <div class="name">
-                                {{meals.strMeal}}
-                            </div>
-                        </div>
+<ul *ngFor="let meals of mealByIds">
+    <li class="list">
+        <a href="/food/{{meals.idMeal}}" >
+            <div class="flip-card" >
+                <div class="flip-card-inner" *ngIf="!!meals && meals.idMeal">
+                  <div class="flip-card-front">
+                    <img [src]="meals.strMealThumb" alt="img" >
+                    <div class="name">
+                        {{meals.strMeal}}
                     </div>
-                </div>
-                <div class="text">
-                    <span >
+                  </div>
+                  <div class="flip-card-back">
+                    <div class="back-name">
+                        {{meals.strMeal}}
+                    </div>
+                    <div class="content">
                         {{meals.idMeal}}
-                    </span>
+                    </div>
+                  </div>
                 </div>
-            </a>
-        </div>
-
+              </div>
+        </a>
     </li>
 </ul>
