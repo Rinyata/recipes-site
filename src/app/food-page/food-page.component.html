@@ -1,5 +1,7 @@
 <div class="container">
-    <img [src]="meal.meals[0].strMealThumb" alt="img">
+    <div class="left">
+        <img [src]="meal.meals[0].strMealThumb" alt="img">
+    </div>
     <div class="info-box">
         <h1 class="food-name">
             {{meal.meals[0].strMeal}}
@@ -51,23 +53,6 @@
                 </span>
                 {{meal.meals[0].strYoutube}}
             </p>
-            <div>
-                <span>
-                    <span>
-                        Ingrediants: 
-                    </span>
-                    <span class="ingrediants" *ngFor="let i of counter(20)">
-                        <span *ngIf="meal.meals[0]['strIngredient' + (i + 1)]" >
-                            {{ meal.meals[0]['strIngredient' + (i + 1)] }}
-                            X
-                            {{ meal.meals[0]['strMeasure' + (i + 1)] }}
-                            <span *ngIf="meal.meals[0]['strIngredient' + (i + 2)]">
-                                ,
-                            </span>
-                        </span>
-                    </span>
-                </span>
-            </div>
             <p>
                 <span>
                     Instructions:  
@@ -75,5 +60,21 @@
                 {{meal.meals[0].strInstructions}}
             </p>
         </div>
+    </div>
+    <div class="ing">
+        <span class="ing-top">
+            Ingrediants: 
+        </span>
+        <span class="ingrediants" *ngFor="let i of counter(20)">
+            <ul >
+                <li  *ngIf="meal.meals[0]['strIngredient' + (i+1)]">
+                    <span *ngIf="meal.meals[0]['strIngredient' + (i + 1)]" >
+                        {{ meal.meals[0]['strIngredient' + (i + 1)] }}
+                        X
+                        {{ meal.meals[0]['strMeasure' + (i + 1)] }}
+                    </span>
+                </li>
+            </ul>
+        </span>
     </div>
 </div>

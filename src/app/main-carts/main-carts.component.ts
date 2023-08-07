@@ -10,21 +10,24 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./main-carts.component.css']
 })
 export class MainCartsComponent implements OnDestroy {
+
   idsByCategories: string[] = [];
   idsByAreas: string[] = [];
   mealByIds: any[] = [];
   SelectedCategory = "Seafood";
   SelectedArea = "";
+  SelectedMeals: string[] = [];
   meals: any;
 
   private categorySubscription: Subscription = new Subscription();
   private areaSubscription: Subscription = new Subscription();
+  private searchSubscruption: Subscription = new Subscription();
 
   constructor(
     private modalService: NgbModal,
     private mealService: MealService,
     private dataSharingService: DataSharingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.categorySubscription = this.dataSharingService.categoryChanged$.subscribe((category: string) => {
@@ -40,7 +43,16 @@ export class MainCartsComponent implements OnDestroy {
         this.getIds();
       }
     });
-    
+
+    this.searchSubscruption = this.dataSharingService.searchChanged$.subscribe((search: string[]) => {
+      this.SelectedMeals = search;
+      if (this.SelectedMeals) {
+        //this.getMealByIDs(this.dataSharingService.getSelectedMealsBySearchBar())
+        //this.dataSharingService.getSelectedMealsBySearchBar();
+        this.mealByIds= this.SelectedMeals;
+      }
+    });
+
   }
 
   getIds() {
@@ -86,7 +98,7 @@ export class MainCartsComponent implements OnDestroy {
   getMealByIDs(ids: any[]) {
     console.log("getMealByIds: ");
     this.mealByIds = [];
-
+debugger
     for (let i = 0; i < ids.length; i++) {
       this.mealService.getMealsByID(ids[i]).subscribe(
         (data: any) => {
@@ -101,8 +113,25 @@ export class MainCartsComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // Abonelikleri unsubscribe etmek için ngOnDestroy yöntemini kullanın
+    // Abonelikleri unsubscribe etmek için ngOnDestroy yöntemini kullandık.
     this.categorySubscription.unsubscribe();
     this.areaSubscription.unsubscribe();
   }
+
+  getSentences(instruction: string): string {
+    let final: string = '';
+    if (instruction) {
+      if (instruction.length <= 100 && instruction != null) {
+        final = instruction;
+      } else {
+        for (let i = 0; i < 100; i++) {
+          final += instruction[i];
+        }
+        final += '.';
+      }
+    }
+    return final;
+  }
+
+
 }

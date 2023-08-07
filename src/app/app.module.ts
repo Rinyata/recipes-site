@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; //allows us to make http requests
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; //for bootstrap
 import { AppRoutingModule } from './app-routing.module'; // AppRoutingModule import edin
+import { FormsModule } from '@angular/forms'; // FormsModule ekleyin
 
 
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     BrowserAnimationsModule,
     NgbModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent,MainPageComponent]

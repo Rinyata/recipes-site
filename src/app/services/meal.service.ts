@@ -5,6 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MealService {
+  static getMealsBy(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
+  static getMeals(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   static getMealsByID(arg0: any): any {
     throw new Error('Method not implemented.');
   }
@@ -23,19 +29,13 @@ export class MealService {
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 
-  // getMealsBy(param:string, index:string) {
-  //   if(param == "foodsByCategories")
-  //     return this.http.get<any[]>(this.apiUrl + 'filter.php?c=' + index);
-  //   else if(param == "foodByAreas")
-  //     return this.http.get<any[]>(this.apiUrl + 'filter.php?a=' + index);
-  //   else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
-  // }
-
   getMealsBy(param:string, index:string) {
     if(param == "foodsByCategories")
       return this.http.get<any[]>(this.apiUrl + 'filter.php?c=' + index);
     else if(param == "foodByAreas")
       return this.http.get<any[]>(this.apiUrl + 'filter.php?a=' + index);
+    else if(param == "firstletter")
+      return this.http.get<any[]>(this.apiUrl + 'search.php?f=' + index);
     else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 
