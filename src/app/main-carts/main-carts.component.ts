@@ -14,7 +14,7 @@ export class MainCartsComponent implements OnDestroy {
   idsByCategories: string[] = [];
   idsByAreas: string[] = [];
   mealByIds: any[] = [];
-  SelectedCategory = "Seafood";
+  SelectedCategory = "";
   SelectedArea = "";
   SelectedMeals: string[] = [];
   meals: any;
@@ -53,11 +53,22 @@ export class MainCartsComponent implements OnDestroy {
       }
     });
 
+    if(this.SelectedCategory == ''){
+      this.mealService.getMealsBy("foodsByCategories", "Seafood").subscribe(
+        (data: any) => {
+          this.meals = data.meals;
+          this.idsByCategories = this.meals.map((meal: { idMeal: string }) => meal.idMeal);
+          this.getMealByIDs(this.idsByCategories);
+        },
+        (error: any) => {
+          console.log("error", error);
+        }
+      );
+    }
 
   }
 
   getIds() {
-    debugger
     // Kategoriler için:
     if (this.SelectedCategory !== "") {
       this.mealService.getMealsBy("foodsByCategories", this.SelectedCategory).subscribe(
