@@ -14,7 +14,20 @@
                         {{meals.strMeal}}
                     </div>
                     <div class="content">
-                        {{meals.idMeal}}
+                      <div class="info">
+                        <span>
+                          Instructions: 
+                        </span>
+                        {{getSentences(meals.strInstructions)}}
+                      </div>
+                      <div class="badges">
+                        <span>
+                          {{meals.strCategory}}
+                        </span>
+                        <span>
+                          {{meals.strArea}}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

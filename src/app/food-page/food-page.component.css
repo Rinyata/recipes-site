@@ -1,7 +1,6 @@
 .container{
     display: flex;
     justify-content: flex-start;
-    
     flex-wrap: wrap;
     margin: 3rem;
     background-color: #404040;
@@ -12,7 +11,6 @@
 
 .container > *{
     min-width: fit-content;
-    max-width: 40rem;
 }
 
 img{
@@ -25,16 +23,16 @@ img{
 }
 
 .container .info-box{
-    max-width: 40%;
     font-size: 150%;
-    margin: 4rem;
+    margin: 1rem;
     min-height: 45rem;
 }
 
 .container .info-box .food-name{
     font-size: 250%;
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
 .container .info-box .top{
@@ -43,16 +41,26 @@ img{
     align-items: center;
 }
 
-.container .info-box .top-bottom{
-    margin-left: 7rem;
-}
-
 .container .info-box .none{
     color: aliceblue;
 }
 
-.container .info-box .ingrediants > *{
+.container .ingrediants{
     color: rgb(149, 203, 250);
+}
+
+.ing{
+    margin-left: 2%;
+    margin-top: 7%;
+}
+
+.ing-top{
+    font-weight: bold;
+    font-size: larger;
+}
+
+.top-top{
+    margin-right: 3rem;
 }
 
 .container .info-box span{
@@ -61,11 +69,10 @@ img{
 
 .container .info-box .bottom{
     margin-top: 2rem;
-    max-width: 60rem;
+    max-width: 55rem;
     font-size: 80%;
 }
 
 .container .info-box .bottom > *{
     margin-top: 1.5rem;
-
 }

@@ -18,7 +18,11 @@
     border-radius: 0rem 1rem 0rem 1rem;
 }
 
-
 .countries{
     margin-top: 10rem;
+}
+
+.dropdown-menu{
+    max-height: 20rem;
+    overflow-y: scroll;
 }

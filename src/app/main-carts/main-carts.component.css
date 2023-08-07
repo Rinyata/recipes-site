@@ -58,18 +58,6 @@ img{
   text-shadow: -3px 4px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
 }
 
-.back-name{
-  color: #d5d5d5;
-  z-index: 5; 
-  font-style: bold;
-  font-weight: 600;
-  font-size: 180%;
-  position: absolute;
-  top: .5rem; 
-  left: 0; 
-  padding: 10px;
-  text-shadow: -3px 5px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
-}
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
@@ -96,4 +84,50 @@ img{
   background-color: #404040;
   color: white;
   transform: rotateY(180deg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.back-name{
+  color: #fff;
+  align-self: center;
+  z-index: 5; 
+  font-style: bold;
+  font-weight: 600;
+  font-size: 200%;
+  margin: .7rem;
+  text-shadow: -3px 4px #ffffff29, 0 0 5px rgba(66, 66, 66, 0.1);
+}
+
+.flip-card-back .content{
+  align-items: flex-start;
+}
+
+.flip-card-back .content .badges{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 2rem;
+}
+
+.flip-card-back .content .info{
+  text-transform: none;
+  margin: 1rem;
+}
+
+.flip-card-back .content .info span{
+  font-weight: bolder;
+  font-size: larger;
+  color:  #D47878;
+}
+
+.flip-card-back .content .badges span{
+  padding: 8px;
+  border-radius: 2rem;
+  background-color: #ffffff4e;
+  margin-right: 5px;
 }
