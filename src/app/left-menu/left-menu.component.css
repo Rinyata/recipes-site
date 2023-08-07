@@ -2,16 +2,15 @@
     background-color: #975D5D;
     height: 100%;
     border-radius: 3px;
-    min-width: 180px;
     display: flex;
     flex-direction: column;
 }
 
 .nav-item{
-    position: absolute;
+    position: relative;
     margin-top: 80px;
-    padding: 0.5% 4% 0.5% 4%;
-    margin-left: 1rem;
+    padding: 2.5% 1% 2.5% 4%;
+    margin:  80px 10% 10% 10%;
     text-decoration: none;
     list-style: none;
     background-color: #fff;
@@ -19,7 +18,7 @@
 }
 
 .countries{
-    margin-top: 10rem;
+    margin-top: 4rem;
 }
 
 .dropdown-menu{
