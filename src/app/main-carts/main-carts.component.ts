@@ -53,18 +53,17 @@ export class MainCartsComponent implements OnDestroy {
       }
     });
 
+
   }
 
   getIds() {
-    console.log("getIds çalıştı");
-
+    debugger
     // Kategoriler için:
     if (this.SelectedCategory !== "") {
       this.mealService.getMealsBy("foodsByCategories", this.SelectedCategory).subscribe(
         (data: any) => {
           this.meals = data.meals;
           this.idsByCategories = this.meals.map((meal: { idMeal: string }) => meal.idMeal);
-          console.log("kategoriden id çektik koyduk.");
           this.getMealByIDs(this.idsByCategories);
         },
         (error: any) => {
@@ -82,7 +81,6 @@ export class MainCartsComponent implements OnDestroy {
         (data: any) => {
           this.meals = data.meals;
           this.idsByAreas = this.meals.map((meal: { idMeal: string }) => meal.idMeal);
-          console.log("areadan id çektik koyduk.");
           this.getMealByIDs(this.idsByAreas);
         },
         (error: any) => {
@@ -96,19 +94,19 @@ export class MainCartsComponent implements OnDestroy {
   }
 
   getMealByIDs(ids: any[]) {
-    console.log("getMealByIds: ");
-    this.mealByIds = [];
-debugger
-    for (let i = 0; i < ids.length; i++) {
-      this.mealService.getMealsByID(ids[i]).subscribe(
-        (data: any) => {
-          //flundar was here
-          this.mealByIds[i] = data.meals[0];
-        },
-        (error: any) => {
-          console.log("error", error);
-        }
-      );
+    if(ids){
+      this.mealByIds = [];
+      for (let i = 0; i < ids.length; i++) {
+        this.mealService.getMealsByID(ids[i]).subscribe(
+          (data: any) => {
+            //flundar was here
+            this.mealByIds[i] = data.meals[0];
+          },
+          (error: any) => {
+            console.log("error", error);
+          }
+        );
+      }
     }
   }
 

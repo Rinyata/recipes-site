@@ -1,5 +1,5 @@
 <ul *ngFor="let meals of mealByIds">
-    <li class="list">
+    <li class="list" *ngIf="!!meals && !!meals.idMeal">
         <a href="/food/{{meals.idMeal}}" >
             <div class="flip-card" >
                 <div class="flip-card-inner" *ngIf="!!meals && meals.idMeal">
