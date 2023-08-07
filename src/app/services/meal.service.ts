@@ -41,7 +41,9 @@ export class MealService {
 
 
   getMealsByID(id:string) {
-    return this.http.get<any[]>(this.apiUrl + 'lookup.php?i=' + id);
+    if(id)
+      return this.http.get<any[]>(this.apiUrl + 'lookup.php?i=' + id);
+    else return this.http.get<any[]>(this.apiUrl + 'search.php?f=a');
   }
 
 }
