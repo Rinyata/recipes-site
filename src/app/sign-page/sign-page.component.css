@@ -1,0 +1,115 @@
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: -35rem;
+
+    transform: rotateY(180deg);
+    perspective: 1000px;
+}
+
+.flip-card-back p {
+    margin-left: 1rem;
+    top: -1rem;
+    padding: 1rem;
+    color: #4c678f;
+}
+
+.containerr {
+    height: 100%;    
+    overflow-y: hidden;
+}
+
+.containerr .row {
+    height: 100%;
+}
+
+.containerr .left{
+    padding: 1rem;
+    position: relative;
+    background-color: #cb8e8e81;
+
+    perspective: 1000px;
+}
+
+.containerr .row .left .ozlusoz {
+    background-color: rgba(240, 248, 255, 0.7);
+    height: 53%;
+    border-radius: 1rem;
+    margin: 5rem 10rem 5rem 10rem;
+    padding: 1rem;
+    font-size: 380%;
+
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.ozlusoz p{
+    margin: 2.0rem;
+    max-width: fit-content;
+    text-transform: capitalize;
+}
+
+.containerr .row .right .box {
+    height: 80%;
+    margin: 10rem 20rem 10rem 10rem;
+    padding: 1rem;
+}
+
+.containerr .row .right .box h1 {
+    margin-bottom: 0.8rem;
+    margin-left: 0.3rem;
+}
+
+.containerr .row .right .box .info {
+    margin-bottom: 3rem;
+    opacity: .5;
+}
+
+.username p,
+.password p {
+position: relative;
+bottom: -1rem;
+}
+
+.username input,
+.password input {
+    border-color: rgba(0, 0, 0, 0.459);
+    border-radius: .3rem;
+    padding: 2px;
+    border-width: 4px;
+    background-color: #92929223;
+}
+
+.password {
+    margin-bottom: 2rem;
+}
+.extra {
+    margin: 0px 1rem 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+button {
+    outline: none;
+    width: 100%;
+    border: none;
+    border-radius: 3rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: #cb8e8e81;
+}
+
+.extra i {
+    color: black;
+}
