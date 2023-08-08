@@ -16,17 +16,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartsComponent } from './carts/carts.component';
 import { FoodPageComponent } from './food-page/food-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { SignPageComponent } from './sign-page/sign-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MyPageComponent } from './my-page/my-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MealListComponent,
     HeaderComponent,
+    SignPageComponent,
     LeftMenuComponent,
     MainCartsComponent,
     CartsComponent,
     FoodPageComponent,
-    MainPageComponent],
+    MainPageComponent,
+    SignPageComponent,
+    MyPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -34,7 +40,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     NgbModule,
     MatSelectModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent,MainPageComponent]

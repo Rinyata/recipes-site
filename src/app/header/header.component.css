@@ -5,7 +5,8 @@
     z-index: 2100;
 }
 
-button{
+a{
+    color: #404040;
     text-decoration: none;
     border: none;
     border-radius: 30px 0px 30px 0px;
@@ -26,6 +27,10 @@ button{
     top: 0;
 }
 
+.containerr .bottom{
+    display: flex;
+    align-items: center;
+}
 
 .containerr .logo{
     text-decoration: none;
@@ -40,23 +45,29 @@ button{
     text-decoration: none;
     background-color: #404040;
     color: #404040;
-    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    padding: 0.5rem 3rem 0.5rem 1.5rem;
     border-radius: 0px 30px 0px 30px;
     position: relative;  
-    transition: 2s ease-in-out;
     box-shadow: 0px 0px 17px -2px rgba(255, 255, 255, 0.25);
+    transition: .8s ease;
+    margin-right: .8rem;
 }
 
-.containerr .search-bar:hover{
+.containerr:hover .search-bar {
+    margin-right: 30rem;
+    transition: 2s ease;
     text-decoration: none;
     background-color: #404040;
-    /* padding: 0.5rem 43rem 0.5rem 0.5rem; */
     border-radius: 0px 30px 0px 30px;
     color: #F6FBEF;
-    position: relative;  
-    transition: 2s ease-in-out;
+    position: relative;
     box-shadow: 0px 0px 17px -2px rgba(255, 255, 255, 0.25);
     cursor: text;
+}
+
+.containerr:hover input{
+    width: 40rem;
+    transition: 2s ease;
 }
 
 .containerr .search-bar span{
@@ -67,21 +78,9 @@ button{
 }
 
 
-.containerr .button .blog-button{
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
-
 input{
     background: none;
     border: none;
     width: 5rem;
     outline: none;
-}
-
-input:hover{
-    width: 43rem;
-    margin-right: 1rem;
-    transition: 2s ease;
 }

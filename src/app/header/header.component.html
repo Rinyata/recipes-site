@@ -2,14 +2,16 @@
     <div class="logo-bar">
         <a href="#" class="logo">Logo</a>
     </div>
-    <div class="search-bar" id="searchBar">
-        <span>
-            <input type="text" placeholder="Search!" [(ngModel)]="searchTerm" (keyup)="searchOnChange()"> <!--//burdaki change entera basıldığında arama yapmasını sağlıyor.-->
-        </span>
-    </div>
-    <div class="button">
-        <button class="blog-button">
-            Sign In
-        </button>
+    <div class="bottom">
+        <div class="search-bar" id="searchBar">
+            <span>
+                <input type="text" placeholder="Search!" [(ngModel)]="searchTerm" (keyup)="searchOnChange()"> <!--//burdaki change entera basıldığında arama yapmasını sağlıyor.-->
+            </span>
+        </div>
+        <div class="button">
+            <a class="blog-button" href="/sign-page">
+                Sign In
+            </a>
+        </div>
     </div>
 </div>
